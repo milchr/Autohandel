@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.humans.ClientDB;
 import com.company.humans.Human;
 import com.company.store.Dealer;
 import com.company.store.Transaction;
@@ -16,10 +17,16 @@ public class Main {
         {
             db.carsDB.add(new Car());
         }
+        ClientDB db2 = new ClientDB();
+        for(int i=0;i<=5;i++)
+        {
+            db2.clientDB.add(new Human());
+        }
 
-        myShop.addCar(new Car());
+
         System.out.println(myShop.dealerCars);
         System.out.println(db.carsDB);
+        System.out.println(db2.clientDB);
 
 
 
