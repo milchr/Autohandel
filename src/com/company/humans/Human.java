@@ -25,6 +25,12 @@ public class Human {
         this.car = car;
         this.myCars.add(car);
     }
+    public Double getCash(){
+        return this.cash;
+    }
+    public void setCash(Double cash){
+        this.cash=cash;
+    }
     public String toString() {
         return "Client: " + this.firstName + ", cash: " + decimalFormat(this.cash);
     }

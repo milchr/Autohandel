@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Car implements Sell {
+public class Car {
 
     private final String producer;
     private final String color;
@@ -51,7 +51,7 @@ public class Car implements Sell {
     }
 
     public String toString() {
-        return "Car producer: " + this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value);
+        return this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value);
     }
 
 
@@ -61,8 +61,5 @@ public class Car implements Sell {
     }
 
 
-    @Override
-    public void sell(Human buyer, Dealer seller, Transaction transaction, double price) {
 
-    }
 }

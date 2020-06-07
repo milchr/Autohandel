@@ -1,14 +1,17 @@
 package com.company.store;
 
 import com.company.Buy;
+import com.company.Sell;
+import com.company.humans.Human;
 import com.company.vehicles.Car;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Dealer implements Buy {
+public class Dealer implements Buy, Sell {
     private String name;
     private Double cash;
     private Car car;
@@ -26,11 +29,16 @@ public class Dealer implements Buy {
 
     }
 
-    public Car getCar() {
-        return car;
-
+    public Car getCar(Integer i) {
+        Car[] myArray = new Car[dealerCars.size()];
+        dealerCars.toArray(myArray);
+        return myArray[i];
     }
-
+    public Double getValue(Integer i){
+        Car[] myArray = new Car[dealerCars.size()];
+        dealerCars.toArray(myArray);
+        return myArray[i].getValue();
+    }
 
     public void addCar(Car car) {
         this.car = car;
@@ -55,12 +63,21 @@ public class Dealer implements Buy {
 
 
     @Override
-    public void buy(Database car, int i) {
-        this.setCash(this.getCash() - car.getValue(i));
-        this.dealerCars.add(car.getCar(i));
-        transactionHistory.add(new Transaction(this.name , car,car.getCar(i),car.getValue(i),LocalDateTime.now()));
-        car.removeCar(car.getCar(i));
-        car.carsDB.add(new Car());
+    public void buy(Database carDb, int i) {
+        this.setCash(this.getCash() - carDb.getValue(i));
+        this.dealerCars.add(carDb.getCar(i));
+        transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
+        carDb.removeCar(carDb.getCar(i));
+        carDb.carsDB.add(new Car());
     }
 
+    @Override
+    public void sell( Database clientDb, int carId, int clientId) {
+        this.setCash(this.getCash() + this.getValue(carId));
+        clientDb.setCash(clientDb.getCash(clientId)-this.getValue(carId),clientId);
+        transactionHistory.add(new Transaction(this,clientDb.getClient(clientId),this.getCar(carId),this.getValue(carId),LocalDateTime.now()));
+        this.removeCar(this.getCar(carId));
+        clientDb.clientDB.add(new Human());
+        clientDb.clientDB.add(new Human());
+    }
 }

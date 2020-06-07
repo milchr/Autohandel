@@ -7,5 +7,5 @@ import com.company.store.Transaction;
 
 public interface Buy {
 
-    void buy(Database car,int i);
+    void buy(Database carDb,int i);
 }
