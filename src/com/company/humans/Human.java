@@ -11,6 +11,7 @@ public class Human {
     private final String firstName;
     private static int nextId = 1;
     private Double cash;
+    private String interestedIn;
     private Car car;
     double randomCash = ThreadLocalRandom.current().nextDouble(10000.0, 300000.0 + 1);
     public Set<Car> myCars;
@@ -27,6 +28,7 @@ public class Human {
     public String toString() {
         return "Client: " + this.firstName + ", cash: " + decimalFormat(this.cash);
     }
+
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
         return decimalFormat.format(value);

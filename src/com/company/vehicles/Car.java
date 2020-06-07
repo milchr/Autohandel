@@ -24,8 +24,8 @@ public class Car implements Sell {
     private String brakes;
     private Integer mileage;
     private Double value;
-    public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda"};
-    public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink"};
+    public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus"};
+    public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink","Purple","Grey"};
     public String[] segments ={"Premium", "Standard", "Budget"};
     public String[] condition ={"damaged", "good"};
     double randomValue = ThreadLocalRandom.current().nextDouble(10000.0, 500000.0 + 1);
@@ -46,9 +46,14 @@ public class Car implements Sell {
 
     }
 
+    public Double getValue(){
+        return this.value;
+    }
+
     public String toString() {
         return "Car producer: " + this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value);
     }
+
 
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
