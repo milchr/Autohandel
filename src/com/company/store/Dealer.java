@@ -6,6 +6,7 @@ import com.company.humans.Human;
 import com.company.vehicles.Car;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -63,21 +64,33 @@ public class Dealer implements Buy, Sell {
 
 
     @Override
-    public void buy(Database carDb, int i) {
+    public void buy(Database carDb, int i) throws Exception {
+        if (this.getCash()< carDb.getValue(i)) {
+            throw new Exception("Not enough money");
+        }
         this.setCash(this.getCash() - carDb.getValue(i));
         this.dealerCars.add(carDb.getCar(i));
+        System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
         carDb.removeCar(carDb.getCar(i));
         carDb.carsDB.add(new Car());
     }
 
     @Override
-    public void sell( Database clientDb, int carId, int clientId) {
+    public void sell( Database clientDb, int carId, int clientId) throws Exception {
+
+        if (clientDb.getCash(clientId) < this.getValue(carId)) {
+            throw new Exception("Not enough money");
+        }
+
         this.setCash(this.getCash() + this.getValue(carId));
         clientDb.setCash(clientDb.getCash(clientId)-this.getValue(carId),clientId);
+        System.out.println("You sold the "+this.getCar(carId)+" to "+clientDb.getClient(clientId));
         transactionHistory.add(new Transaction(this,clientDb.getClient(clientId),this.getCar(carId),this.getValue(carId),LocalDateTime.now()));
         this.removeCar(this.getCar(carId));
         clientDb.clientDB.add(new Human());
         clientDb.clientDB.add(new Human());
+        System.out.println("You've gained two new potential customers");
     }
+
 }

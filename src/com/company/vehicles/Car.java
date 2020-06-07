@@ -28,7 +28,7 @@ public class Car {
     public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink","Purple","Grey"};
     public String[] segments ={"Premium", "Standard", "Budget"};
     public String[] condition ={"damaged", "good"};
-    double randomValue = ThreadLocalRandom.current().nextDouble(10000.0, 500000.0 + 1);
+    double randomValue = ThreadLocalRandom.current().nextDouble(8000.0, 500000.0 + 1);
     int randomMileage = ThreadLocalRandom.current().nextInt(1000, 300000 + 1);
 
 

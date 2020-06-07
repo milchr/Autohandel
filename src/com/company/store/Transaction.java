@@ -1,14 +1,10 @@
 package com.company.store;
 
-import com.company.Buy;
-import com.company.Sell;
 import com.company.humans.Human;
 import com.company.vehicles.Car;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Transaction{
     private Dealer dealer;
@@ -26,10 +22,8 @@ public class Transaction{
         this.car=car;
         this.price = price;
         this.date = date;
-
-
-
     }
+
     public Transaction(Dealer buyer, Database seller, Car car, Double price, LocalDateTime date){
         this.dealer=buyer;
         this.car=car;
@@ -46,12 +40,11 @@ public class Transaction{
         }else{
             return "\n"+"Transaction between: " + this.dealer+" and "+ this.buyer + "   Car: " + this.car + " price: " + decimalFormat(this.price) + ", date: " + this.date;
         }
-
     }
+
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
         return decimalFormat.format(value);
     }
-
 
 }

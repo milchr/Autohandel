@@ -7,5 +7,5 @@ import com.company.store.Transaction;
 import com.company.vehicles.Car;
 
 public interface Sell {
-    void sell( Database clientDb, int carId, int clientId);
+    void sell( Database clientDb, int carId, int clientId) throws Exception;
 }

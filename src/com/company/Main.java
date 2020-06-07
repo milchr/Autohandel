@@ -16,62 +16,116 @@ public class Main {
         int index=0;
         int carId=0;
         int clientId=0;
-        Dealer myShop = new Dealer("Car Shop",25000.0);
+        int key=0;
 
+        Scanner in = new Scanner(System.in);
+        Dealer myShop = new Dealer("Car Shop",35000.0);
         Database database = new Database();
-        for(int i=0;i<=10;i++)
+
+        for(int i=0;i<10;i++)
         {
             database.carsDB.add(new Car());
         }
-        for(int i=0;i<=5;i++)
+        for(int i=0;i<5;i++)
         {
             database.clientDB.add(new Human());
         }
 
-      // System.out.println(database.carsDB);
-       // System.out.println(database.clientDB);
-       // System.out.println(myShop.transactionHistory);
-       // System.out.println(myShop.dealerCars);
-
-        Scanner in = new Scanner(System.in);
-
         do{
-            System.out.println("[1] Show my cars");
-            System.out.println("[2] Display balance");
-            System.out.println("[3] Show cars available for purchase");
-            System.out.println("[4] Buy a car");
-            System.out.println("[5] Review potential customers");
-            System.out.println("[6] Sell the car to the customer");
-            System.out.println("[8] Transaction history");
+            System.out.println("[1] My shop");
+            System.out.println("[2] Show cars available for purchase");
+            System.out.println("[3] Sell a car");
+            System.out.println("[4] Car mechanic");
+            System.out.println("[5] Wait a week for a new delivery of cars to the database");
             System.out.println("[9] Exit");
             selection=in.nextInt();
             switch(selection){
                 case 1:
-                    System.out.println(myShop.dealerCars);
+                    do{
+                    System.out.println("[1] Show my cars");
+                    System.out.println("[2] Display balance");
+                    System.out.println("[3] Transaction history");
+                    System.out.println("[4] Buy advertisement");
+                    System.out.println("[5] Back");
+                    key=in.nextInt();
+                    switch (key){
+                        case 1:
+                            System.out.println(myShop.dealerCars);
+                            break;
+                        case 2:
+                            System.out.println(myShop.getCash());
+                            break;
+                        case 3:
+                            System.out.println(myShop.transactionHistory);
+                            break;
+                        case 5:
+                            System.out.println("------------------");
+                            break;
+                        default:
+                            System.out.println("Invalid number");
+                    }
+                    }while(key!=5);
                     break;
                 case 2:
-                    System.out.println(myShop.getCash());
+                    do{
+                    System.out.println("[1] Show cars");
+                    System.out.println("[2] Buy a car");
+                    System.out.println("[3] Back");
+                    key=in.nextInt();
+                    switch (key){
+                        case 1:
+                            System.out.println(database.carsDB);
+                            break;
+                        case 2:
+                            System.out.println("Select a car index :");
+                            index=in.nextInt();
+                            try {
+                                myShop.buy(database,index);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 3:
+                            System.out.println("------------------");
+                            break;
+                        default:
+                            System.out.println("Invalid number");
+                    }
+                    }while(key!=3);
                     break;
                 case 3:
-                    System.out.println(database.carsDB);
-                    break;
-                case 4:
-                    System.out.println("Select a car index (0-9) :");
-                    index=in.nextInt();
-                    myShop.buy(database,index);
+                    do{
+                    System.out.println("[1] Review potential customers");
+                    System.out.println("[2] Sell the car to the customer");
+                    System.out.println("[3] Back");
+                    key=in.nextInt();
+                    switch (key){
+                        case 1:
+                            System.out.println(database.clientDB);
+                            break;
+                        case 2:
+                            System.out.println(myShop.dealerCars);
+                            System.out.println("Select a car index :");
+                            carId=in.nextInt();
+                            System.out.println("Select customer index :");
+                            clientId=in.nextInt();
+                            try {
+                                myShop.sell(database,carId,clientId);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 3:
+                            System.out.println("------------------");
+                            break;
+
+                        default:
+                            System.out.println("Invalid number");
+                    }
+                    }while(key!=3);
                     break;
                 case 5:
-                    System.out.println(database.clientDB);
-                    break;
-                case 6:
-                    System.out.println("Select a car index (0-9) :");
-                    carId=in.nextInt();
-                    System.out.println("Select customer index (0-9) :");
-                    clientId=in.nextInt();
-                    myShop.sell(database,carId,clientId);
-                    break;
-                case 8:
-                    System.out.println(myShop.transactionHistory);
+                    database.waitAWeek();
                     break;
                 case 9:
                     System.out.println("________________");
@@ -80,7 +134,7 @@ public class Main {
                     System.out.println("Invalid number");
 
             }
-        }while(selection!=8);
+        }while(selection!=9);
 
 
     }
