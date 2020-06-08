@@ -2,7 +2,9 @@ package com.company.store;
 
 import com.company.humans.Human;
 import com.company.vehicles.Car;
+import com.company.vehicles.Parts;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import java.util.Set;
@@ -44,6 +46,13 @@ public class Database{
     }
     public void removeCar(Car car) {
         this.carsDB.remove(car);
+    }
+
+    public void setParts(){
+        for(Car car : this.carsDB)
+        {
+            car.setParts();
+        }
     }
 
     public void waitAWeek(){

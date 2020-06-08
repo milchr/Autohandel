@@ -4,6 +4,7 @@ import com.company.Buy;
 import com.company.Sell;
 import com.company.humans.Human;
 import com.company.vehicles.Car;
+import com.company.vehicles.Parts;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import java.text.DecimalFormat;
@@ -53,6 +54,7 @@ public class Dealer implements Buy, Sell {
     public Double getCash() {
         return cash;
     }
+
 
     public void setCash(Double cash) {
         this.cash = cash;
