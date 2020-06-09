@@ -82,10 +82,12 @@ public class Game {
                                         case 1:
                                             adType = "Newspaper";
                                             myShop.ad(adType,database);
+                                            numberOfTurns++;
                                             break;
                                         case 2:
                                             adType = "Internet";
                                             myShop.ad(adType,database);
+                                            numberOfTurns++;
                                             break;
                                         case 3:
                                             System.out.println("------------------");
