@@ -8,6 +8,7 @@ import com.company.store.Database;
 import com.company.store.Dealer;
 import com.company.vehicles.Car;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Game {
@@ -61,7 +62,7 @@ public class Game {
                                 System.out.println(myShop.dealerCars);
                                 break;
                             case 2:
-                                System.out.println(myShop.getCash());
+                                System.out.println(decimalFormat(myShop.getCash()));
                                 break;
                             case 3:
                                 System.out.println(myShop.transactionHistory);
@@ -154,7 +155,7 @@ public class Game {
                                 if (carId!=-1) {
                                     do {
                                         System.out.println("[1] Show car parts");
-                                        System.out.println("Select the part to be repaired:    " + "Your money: " + myShop.getCash() + "$");
+                                        System.out.println("Select the part to be repaired:    " + "Your money: " + decimalFormat(myShop.getCash()) + "$");
                                         System.out.println("[2] Engine --- " + mechanic1.getPriceOfRepair(myShop,carId,"engine")+"$");
                                         System.out.println("[3] Gearbox --- "+ mechanic1.getPriceOfRepair(myShop,carId,"gearbox")+"$");
                                         System.out.println("[4] Suspension --- "+ mechanic1.getPriceOfRepair(myShop,carId,"suspension")+"$");
@@ -227,7 +228,7 @@ public class Game {
                                 if (carId!=-1) {
                                     do {
                                         System.out.println("[1] Show car parts");
-                                        System.out.println("Select the part to be repaired:    " + "Your money: " + myShop.getCash() + "$");
+                                        System.out.println("Select the part to be repaired:    " + "Your money: " + decimalFormat(myShop.getCash())+ "$");
                                         System.out.println("[2] Engine --- " + mechanic2.getPriceOfRepair(myShop,carId,"engine")+"$");
                                         System.out.println("[3] Gearbox --- "+ mechanic2.getPriceOfRepair(myShop,carId,"gearbox")+"$");
                                         System.out.println("[4] Suspension --- "+ mechanic2.getPriceOfRepair(myShop,carId,"suspension")+"$");
@@ -300,7 +301,7 @@ public class Game {
                                 if (carId!=-1) {
                                     do {
                                         System.out.println("[1] Show car parts");
-                                        System.out.println("Select the part to be repaired:    " + "Your money: " + myShop.getCash() + "$");
+                                        System.out.println("Select the part to be repaired:    " + "Your money: " + decimalFormat(myShop.getCash()) + "$");
                                         System.out.println("[2] Engine --- 10,000$");
                                         System.out.println("[3] Gearbox --- 5,000$");
                                         System.out.println("[4] Suspension --- 2,000$");
@@ -393,7 +394,10 @@ public class Game {
 
     }
 
-
+    private String decimalFormat(Double value) {
+        DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
+        return decimalFormat.format(value);
+    }
 
 }
 

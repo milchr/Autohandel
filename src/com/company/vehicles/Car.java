@@ -19,19 +19,19 @@ public class Car {
     public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus","Maserati","McLaren"};
     public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink","Purple","Grey"};
     public String[] segments ={"Premium", "Standard", "Budget"};
-
     public Parts parts;
-    double randomValue = ThreadLocalRandom.current().nextDouble(8000.0, 500000.0 + 1);
-    int randomMileage = ThreadLocalRandom.current().nextInt(1000, 300000 + 1);
+    double randomPremiumValue = ThreadLocalRandom.current().nextDouble(200000.0, 400000.0);
+    double randomStandardValue = ThreadLocalRandom.current().nextDouble(30000.0, 150000.0);
+    double randomBudgetValue = ThreadLocalRandom.current().nextDouble(5000.0, 20000.0);
+    int randomMileage = ThreadLocalRandom.current().nextInt(1000, 300000);
 
 
     public Car() {
         this.producer = producers[new Random().nextInt(producers.length)];
         this.color = colors[new Random().nextInt(colors.length)];;
-        this.value = randomValue;
         this.mileage = randomMileage;
         this.segment = setSegment();
-        //segments[new Random().nextInt(segments.length)]
+        this.value = setRandomValue();
         this.parts = new Parts();
     }
     public String setSegment(){
@@ -42,6 +42,17 @@ public class Car {
             return segments[1];
         }else{
             return segments[2];
+        }
+    }
+
+    public Double setRandomValue(){
+        if(this.segment.equals("Premium")){
+            return randomPremiumValue;
+        }
+        if(this.segment.equals("Standard")){
+            return randomStandardValue;
+        }else{
+            return randomBudgetValue;
         }
     }
     public String getSegment(){
@@ -59,7 +70,7 @@ public class Car {
     }
 
     public String toString() {
-        return "\n"+this.producer + ", color: " + this.color +", Segment: "+this.segment+ ", value: " + decimalFormat(this.value)+"$";
+        return "\n"+this.producer + ", color: " + this.color +", Mileage: " + this.mileage + " KM, Segment: "+this.segment+ ", value: " + decimalFormat(this.value)+"$";
     }
     public Parts getParts(){
         return  this.parts;
