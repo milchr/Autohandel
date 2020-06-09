@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class Game {
 
+
     public void StartGame() {
         int selection = 0;
         int index = 0;
@@ -22,6 +23,8 @@ public class Game {
         int part = 0;
         int numberOfTurns = 0;
         String partName;
+        String adType;
+
 
         Scanner in = new Scanner(System.in);
         Dealer myShop = new Dealer("Car Shop", 450000.0);
@@ -29,7 +32,7 @@ public class Game {
         Janusz mechanic1 = new Janusz("Janusz", 1.0);
         Marian mechanic2 = new Marian("Marian", 0.9);
         Adrian mechanic3 = new Adrian("Adrian", 0.8);
-
+        double startCash=myShop.getCash();
         for (int i = 0; i < 10; i++) {
             database.carsDB.add(new Car());
         }
@@ -48,6 +51,7 @@ public class Game {
             System.out.println();
             System.out.println("Turn: " + numberOfTurns);
             selection = in.nextInt();
+
             switch (selection) {
                 case 1:
                     do {
@@ -66,6 +70,30 @@ public class Game {
                                 break;
                             case 3:
                                 System.out.println(myShop.transactionHistory);
+                                break;
+                            case 4:
+                                do{
+                                    System.out.println("Select the type of ad:         "+ "Your money: " + decimalFormat(myShop.getCash()) + "$");
+                                    System.out.println("[1] Advertisement in a local newspaper ---- 30000.0$");
+                                    System.out.println("[2] Internet advertising ---- 50000.0$");
+                                    System.out.println("[3] Back");
+                                    part = in.nextInt();
+                                    switch (part) {
+                                        case 1:
+                                            adType = "Newspaper";
+                                            myShop.ad(adType,database);
+                                            break;
+                                        case 2:
+                                            adType = "Internet";
+                                            myShop.ad(adType,database);
+                                            break;
+                                        case 3:
+                                            System.out.println("------------------");
+                                            break;
+                                        default:
+                                            System.out.println("Invalid number");
+                                    }
+                                } while (part != 3);
                                 break;
                             case 5:
                                 System.out.println("------------------");
@@ -373,6 +401,8 @@ public class Game {
                             case 5:
                                 System.out.println("------------------");
                                 break;
+
+
                             default:
                                 System.out.println("Invalid number");
                         }
@@ -384,9 +414,16 @@ public class Game {
                     break;
                 case 9:
                     System.out.println("________________");
+
                     break;
                 default:
                     System.out.println("Invalid number");
+            }
+            if(myShop.getCash()>=startCash*2)
+            {
+                System.out.println("You won the game!");
+                System.out.println("Number of turns you have made: "+ numberOfTurns);
+                break;
 
             }
         } while (selection != 9);
@@ -394,6 +431,13 @@ public class Game {
 
     }
 
+//    public void goalOfTheGame(){
+//
+//        System.out.println("You won the game!");
+//        System.out.println("Number of turns you have made: "+ numberOfTurns);
+//        break endgame;
+//
+//    }
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
         return decimalFormat.format(value);

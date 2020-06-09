@@ -2,20 +2,23 @@ package com.company.store;
 
 import com.company.Buy;
 import com.company.Sell;
+import com.company.advertisement.Ad;
 import com.company.humans.Human;
 import com.company.vehicles.Car;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
-public class Dealer implements Buy, Sell {
+public class Dealer implements Buy, Sell, Ad {
     private String name;
     private Double cash;
     private Car car;
     public ArrayList<Transaction> transactionHistory = new ArrayList<>();
     public Set<Car> dealerCars;
+    private static final Double DEFAULT_TAX = 0.02;
 
     public Dealer(String name,Double cash){
         this.name=name;
@@ -58,6 +61,15 @@ public class Dealer implements Buy, Sell {
         return this.name;
     }
 
+    public int randomNumberOfClients(){
+        Random random = new Random();
+        return random.nextInt(4)+1;
+    }
+
+    public void carWash(){
+        this.setCash(getCash()-30.0);
+        System.out.println("You washed the car");
+    }
 
 
     @Override
@@ -66,7 +78,9 @@ public class Dealer implements Buy, Sell {
             throw new Exception("Not enough money");
         }
         this.setCash(this.getCash() - carDb.getValue(i));
+        this.setCash(this.getCash() - carDb.getValue(i)*DEFAULT_TAX);
         this.dealerCars.add(carDb.getCar(i));
+        this.carWash();
         System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
         carDb.removeCar(carDb.getCar(i));
@@ -90,4 +104,23 @@ public class Dealer implements Buy, Sell {
         System.out.println("You've gained two new potential customers");
     }
 
+    @Override
+    public void ad(String type, Database clientDB) {
+        if(type.equals("Newspaper"))
+        {
+            System.out.println("You bought an advertisement in a local newspaper!");
+            this.setCash(this.getCash() - 30000.0);
+            for(int i=0;i<randomNumberOfClients();i++){
+                clientDB.clientDB.add(new Human());
+            }
+            System.out.println("You've gained "+randomNumberOfClients()+" new customers!");
+        }
+        if(type.equals("Internet"))
+        {
+            System.out.println("You bought online advertising!");
+            this.setCash(this.getCash() - 5000.0);
+            clientDB.clientDB.add(new Human());
+            System.out.println("You've gained one new customer");
+        }
+    }
 }
