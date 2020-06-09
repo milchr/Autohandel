@@ -9,7 +9,9 @@ import com.company.store.Dealer;
 import com.company.vehicles.Car;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -63,7 +65,50 @@ public class Game {
                         key = in.nextInt();
                         switch (key) {
                             case 1:
-                                System.out.println(myShop.dealerCars);
+                              do{
+                                    System.out.println(myShop.dealerCars);
+                                    System.out.println();
+                                    System.out.println("[1] Select car");
+                                    System.out.println("[2] Check car costs");
+                                    System.out.println("[3] Back");
+                                    part = in.nextInt();
+                                    switch (part) {
+                                        case 1:
+                                            System.out.println(myShop.dealerCars);
+                                            System.out.println("Select a car index :");
+                                            carId = in.nextInt();
+                                            break;
+                                        case 2:
+                                            if (carId!=-1) {
+                                                do {
+                                                    System.out.println("[1] Show costs of car repair");
+                                                    System.out.println("[2] Show car washing costs");
+                                                    System.out.println("[3] Back");
+                                                    index = in.nextInt();
+                                                    switch (index) {
+                                                        case 1:
+                                                            System.out.println("You spent to repair the car: "+ myShop.getCarRepairCosts(carId)+"$\n");
+                                                            break;
+                                                        case 2:
+                                                            System.out.println("You spent on car washing: "+ myShop.getCarWashCosts(carId)+"$\n");
+                                                            break;
+                                                        case 3:
+                                                            System.out.println("------------------");
+                                                            break;
+                                                        default:
+                                                            System.out.println("Invalid number");
+                                                    }
+                                                } while (index != 3);
+                                            } else {
+                                                System.out.println("You didn't choose the car!\n");
+                                            }
+                                        case 3:
+                                            System.out.println("------------------");
+                                            break;
+                                        default:
+                                            System.out.println("Invalid number");
+                                    }
+                                } while (part != 3);
                                 break;
                             case 2:
                                 System.out.println(decimalFormat(myShop.getCash()));

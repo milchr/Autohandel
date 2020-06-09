@@ -42,6 +42,12 @@ public class Dealer implements Buy, Sell, Ad {
         dealerCars.toArray(myArray);
         return myArray[i].getValue();
     }
+    public Double getCarRepairCosts(int i){
+        return getCar(i).getSumOfRepairCosts();
+    }
+    public Double getCarWashCosts(int i){
+        return getCar(i).getSumCarWashCosts();
+    }
 
     public void addCar(Car car) {
         this.car = car;
@@ -66,8 +72,9 @@ public class Dealer implements Buy, Sell, Ad {
         return random.nextInt(4)+1;
     }
 
-    public void carWash(){
+    public void carWash(int i){
         this.setCash(getCash()-30.0);
+        getCar(i).addCarWashCosts(30.0);
         System.out.println("You washed the car");
     }
 
@@ -80,9 +87,9 @@ public class Dealer implements Buy, Sell, Ad {
         this.setCash(this.getCash() - carDb.getValue(i));
         this.setCash(this.getCash() - carDb.getValue(i)*DEFAULT_TAX);
         this.dealerCars.add(carDb.getCar(i));
-        this.carWash();
         System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
+        this.carWash(i);
         carDb.removeCar(carDb.getCar(i));
         carDb.carsDB.add(new Car());
     }

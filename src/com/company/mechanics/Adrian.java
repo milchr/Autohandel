@@ -26,6 +26,9 @@ public class Adrian extends Mechanic {
         return priceOfRepair(car, i, part);
     }
 
+    public void addRepairCosts(Dealer car, int i, Double price){
+        car.getCar(i).addRepairCosts(price);
+    }
     public Double priceOfRepair(Dealer car, int i, String part){
         Double price=0.0;
         if(car.getCar(i).getSegment().equals("Premium")){
@@ -122,6 +125,7 @@ public class Adrian extends Mechanic {
             case "engine":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     if(chanceToDamage()==true){
                         whichPart=randomNumber();
@@ -150,6 +154,7 @@ public class Adrian extends Mechanic {
             case "gearbox":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     if(chanceToDamage()==true){
                         whichPart=randomNumber();
@@ -178,6 +183,7 @@ public class Adrian extends Mechanic {
             case "suspension":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     if(chanceToDamage()==true){
                         whichPart=randomNumber();
@@ -206,6 +212,7 @@ public class Adrian extends Mechanic {
             case "carbody":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     if(chanceToDamage()==true){
                         whichPart=randomNumber();
@@ -234,6 +241,7 @@ public class Adrian extends Mechanic {
             case "brakes":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     if(chanceToDamage()==true){
                         whichPart=randomNumber();

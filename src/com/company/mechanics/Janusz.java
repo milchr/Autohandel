@@ -20,6 +20,10 @@ public class Janusz extends Mechanic{
         return priceOfRepair(car, i, part);
     }
 
+    public void addRepairCosts(Dealer car, int i, Double price){
+        car.getCar(i).addRepairCosts(price);
+    }
+
     public Double priceOfRepair(Dealer car, int i, String part){
         Double price=0.0;
         if(car.getCar(i).getSegment().equals("Premium")){
@@ -95,30 +99,35 @@ public class Janusz extends Mechanic{
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 break;
             case "gearbox":
                 car.getCar(i).getParts().setGearbox();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 break;
             case "suspension":
                 car.getCar(i).getParts().setSuspension();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 break;
             case "carbody":
                 car.getCar(i).getParts().setCarBody();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair car body");
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 break;
             case "brakes":
                 car.getCar(i).getParts().setBrakes();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.1);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 break;
             default:
                 System.out.println("Invalid number");

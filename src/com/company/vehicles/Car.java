@@ -16,6 +16,8 @@ public class Car {
 
     private Integer mileage;
     private Double value;
+    private Double sumOfRepairCosts=0.0;
+    private Double sumCarWashCosts=0.0;
     public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus","Maserati","McLaren"};
     public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink","Purple","Grey"};
     public String[] segments ={"Premium", "Standard", "Budget"};
@@ -64,9 +66,17 @@ public class Car {
     public Double getValue(){
         return this.value;
     }
+    public Double getSumOfRepairCosts(){ return this.sumOfRepairCosts;}
+    public Double getSumCarWashCosts(){ return this.sumCarWashCosts;}
     public void setValue(Double price)
     {
         this.value=price;
+    }
+    public void addCarWashCosts(Double price){
+        sumCarWashCosts+=price;
+    }
+    public void addRepairCosts(Double price){
+        sumOfRepairCosts+=price;
     }
 
     public String toString() {
@@ -75,6 +85,7 @@ public class Car {
     public Parts getParts(){
         return  this.parts;
     }
+
 
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");

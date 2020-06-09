@@ -25,6 +25,10 @@ public class Marian extends Mechanic {
         return priceOfRepair(car, i, part);
     }
 
+    public void addRepairCosts(Dealer car, int i, Double price){
+        car.getCar(i).addRepairCosts(price);
+    }
+
     public Double priceOfRepair(Dealer car, int i, String part){
         Double price=0.0;
         if(car.getCar(i).getSegment().equals("Premium")){
@@ -106,6 +110,7 @@ public class Marian extends Mechanic {
             case "engine":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setEngine();
                     System.out.println(part+" has been successfully repaired");
@@ -117,6 +122,7 @@ public class Marian extends Mechanic {
             case "gearbox":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setGearbox();
                     System.out.println(part+" has been successfully repaired");
@@ -128,6 +134,7 @@ public class Marian extends Mechanic {
             case "suspension":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setSuspension();
                     System.out.println(part+" has been successfully repaired");
@@ -139,6 +146,7 @@ public class Marian extends Mechanic {
             case "carbody":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setCarBody();
                     System.out.println(part+" has been successfully repaired");
@@ -150,6 +158,7 @@ public class Marian extends Mechanic {
             case "brakes":
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
+                addRepairCosts(car,i,priceOfRepair(car,i,part));
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setBrakes();
                     System.out.println(part+" has been successfully repaired");
