@@ -1,6 +1,5 @@
 package com.company.vehicles;
 
-
 import java.util.Random;
 
 public class Parts {
@@ -36,6 +35,26 @@ public class Parts {
         this.brakes = isDamaged(true);
     }
 
+    public void setEngineDamage(){
+        this.engine = isDamaged(false);
+        System.out.println("Engine has been damaged!");
+    }
+    public void setGearboxDamage(){
+        this.gearbox = isDamaged(false);
+        System.out.println("Gearbox has been damaged!");
+    }
+    public void setSuspensionDamage(){
+        this.suspension = isDamaged(false);
+        System.out.println("Suspension has been damaged!");
+    }
+    public void setCarBodyDamage(){
+        this.carBody = isDamaged(false);
+        System.out.println("CarBody has been damaged!");
+    }
+    public void setBrakesDamage(){
+        this.brakes = isDamaged(false);
+        System.out.println("Brakes has been damaged!");
+    }
 
     public boolean isDamaged(boolean a){
         return a;

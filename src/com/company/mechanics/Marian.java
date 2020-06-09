@@ -4,18 +4,97 @@ import com.company.store.Dealer;
 
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 public class Marian extends Mechanic {
     private static final Double DEFAULT_GUARANTEE = 0.9;
+    private static final Double DEFAULT_ENGINE_PRICE = 30000.0;
+    private static final Double DEFAULT_GEARBOX_PRICE = 15000.0;
+    private static final Double DEFAULT_CARBODY_PRICE = 15000.0;
+    private static final Double DEFAULT_SUSPENSION_PRICE = 4000.0;
+    private static final Double DEFAULT_BRAKES_PRICE = 2000.0;
+    private static final Double DEFAULT_REPAIR_PREMIUM_MULTIPLIER= 1.5;
+    private static final Double DEFAULT_REPAIR_STANDARD_MULTIPLIER= 1.25;
+    private static final Double DEFAULT_REPAIR_BUDGET_MULTIPLIER= 1.0;
 
     public Marian(String name, Double guarantee) {
         super(name, guarantee);
         this.guarantee=DEFAULT_GUARANTEE;
     }
+    public Double getPriceOfRepair(Dealer car, int i, String part){
+        return priceOfRepair(car, i, part);
+    }
+
+    public Double priceOfRepair(Dealer car, int i, String part){
+        Double price=0.0;
+        if(car.getCar(i).getSegment().equals("Premium")){
+            switch(part){
+                case "engine":
+                    price =DEFAULT_ENGINE_PRICE*DEFAULT_REPAIR_PREMIUM_MULTIPLIER;
+                    break;
+                case "gearbox":
+                    price =DEFAULT_GEARBOX_PRICE*DEFAULT_REPAIR_PREMIUM_MULTIPLIER;
+                    break;
+                case "suspension":
+                    price =DEFAULT_SUSPENSION_PRICE*DEFAULT_REPAIR_PREMIUM_MULTIPLIER;
+                    break;
+                case "carbody":
+                    price =DEFAULT_CARBODY_PRICE*DEFAULT_REPAIR_PREMIUM_MULTIPLIER;
+                    break;
+                case "brakes":
+                    price =DEFAULT_BRAKES_PRICE*DEFAULT_REPAIR_PREMIUM_MULTIPLIER;
+                    break;
+            }
+            return price;
+        }
+        if(car.getCar(i).getSegment().equals("Standard")){
+            switch(part){
+                case "engine":
+                    price =DEFAULT_ENGINE_PRICE*DEFAULT_REPAIR_STANDARD_MULTIPLIER;
+                    break;
+                case "gearbox":
+                    price =DEFAULT_GEARBOX_PRICE*DEFAULT_REPAIR_STANDARD_MULTIPLIER;
+                    break;
+                case "suspension":
+                    price =DEFAULT_SUSPENSION_PRICE*DEFAULT_REPAIR_STANDARD_MULTIPLIER;
+                    break;
+                case "carbody":
+                    price =DEFAULT_CARBODY_PRICE*DEFAULT_REPAIR_STANDARD_MULTIPLIER;
+                    break;
+                case "brakes":
+                    price =DEFAULT_BRAKES_PRICE*DEFAULT_REPAIR_STANDARD_MULTIPLIER;
+                    break;
+            }
+            return price;
+        }
+        if(car.getCar(i).getSegment().equals("Budget")){
+            switch(part){
+                case "engine":
+                    price =DEFAULT_ENGINE_PRICE*DEFAULT_REPAIR_BUDGET_MULTIPLIER;
+                    break;
+                case "gearbox":
+                    price =DEFAULT_GEARBOX_PRICE*DEFAULT_REPAIR_BUDGET_MULTIPLIER;
+                    break;
+                case "suspension":
+                    price =DEFAULT_SUSPENSION_PRICE*DEFAULT_REPAIR_BUDGET_MULTIPLIER;
+                    break;
+                case "carbody":
+                    price =DEFAULT_CARBODY_PRICE*DEFAULT_REPAIR_BUDGET_MULTIPLIER;
+                    break;
+                case "brakes":
+                    price =DEFAULT_BRAKES_PRICE*DEFAULT_REPAIR_BUDGET_MULTIPLIER;
+                    break;
+            }
+            return price;
+        }
+        return 0.0;
+
+    }
 
     public boolean chanceToRepair(){
-        if(new Random().nextInt()>=0 && new Random().nextInt()<=90){
+        Random random = new Random();
+        int rnd =  random.nextInt(100);
+        if(rnd>=0 && rnd<=90){
             return true;
         }else
             return false;
@@ -25,8 +104,8 @@ public class Marian extends Mechanic {
     public void repair(Dealer car, int i, String part) {
         switch(part){
             case "engine":
-                car.setCash(car.getCash() - 30000.0);
-                System.out.println("You spent 30,000 to repair the engine");
+                car.setCash(car.getCash() - priceOfRepair(car,i,part));
+                System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setEngine();
                     System.out.println(part+" has been successfully repaired");
@@ -36,8 +115,8 @@ public class Marian extends Mechanic {
                 }
                 break;
             case "gearbox":
-                car.setCash(car.getCash() - 15000.0);
-                System.out.println("You spent 15,000 to repair the engine");
+                car.setCash(car.getCash() - priceOfRepair(car,i,part));
+                System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setGearbox();
                     System.out.println(part+" has been successfully repaired");
@@ -47,8 +126,8 @@ public class Marian extends Mechanic {
                 }
                 break;
             case "suspension":
-                car.setCash(car.getCash() - 4000.0);
-                System.out.println("You spent 4,000 to repair the engine");
+                car.setCash(car.getCash() - priceOfRepair(car,i,part));
+                System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setSuspension();
                     System.out.println(part+" has been successfully repaired");
@@ -58,8 +137,8 @@ public class Marian extends Mechanic {
                 }
                 break;
             case "carbody":
-                car.setCash(car.getCash() - 15000.0);
-                System.out.println("You spent 15,000 to repair the engine");
+                car.setCash(car.getCash() - priceOfRepair(car,i,part));
+                System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setCarBody();
                     System.out.println(part+" has been successfully repaired");
@@ -69,8 +148,8 @@ public class Marian extends Mechanic {
                 }
                 break;
             case "brakes":
-                car.setCash(car.getCash() - 2000.0);
-                System.out.println("You spent 2,000 to repair the engine");
+                car.setCash(car.getCash() - priceOfRepair(car,i,part));
+                System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 if(chanceToRepair()==true){
                     car.getCar(i).getParts().setBrakes();
                     System.out.println(part+" has been successfully repaired");

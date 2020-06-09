@@ -16,7 +16,7 @@ public class Car {
 
     private Integer mileage;
     private Double value;
-    public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus"};
+    public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus","Maserati","McLaren"};
     public String[] colors ={"Red", "Blue", "Green","White","Yellow","Black","Orange","Pink","Purple","Grey"};
     public String[] segments ={"Premium", "Standard", "Budget"};
 
@@ -30,8 +30,22 @@ public class Car {
         this.color = colors[new Random().nextInt(colors.length)];;
         this.value = randomValue;
         this.mileage = randomMileage;
-        this.segment = segments[new Random().nextInt(segments.length)];
+        this.segment = setSegment();
+        //segments[new Random().nextInt(segments.length)]
         this.parts = new Parts();
+    }
+    public String setSegment(){
+        if(this.producer.equals("Ferrari") || this.producer.equals("Porsche") || this.producer.equals("Maserati")|| this.producer.equals("McLaren")){
+            return segments[0];
+        }
+        if(this.producer.equals("Audi") || this.producer.equals("BMW") || this.producer.equals("Mercedes") || this.producer.equals("Lexus")){
+            return segments[1];
+        }else{
+            return segments[2];
+        }
+    }
+    public String getSegment(){
+        return this.segment;
     }
     public void setParts(){
         new Parts();
@@ -45,7 +59,7 @@ public class Car {
     }
 
     public String toString() {
-        return "\n"+this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value)+"$";
+        return "\n"+this.producer + ", color: " + this.color +", Segment: "+this.segment+ ", value: " + decimalFormat(this.value)+"$";
     }
     public Parts getParts(){
         return  this.parts;

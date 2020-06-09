@@ -155,11 +155,11 @@ public class Game {
                                     do {
                                         System.out.println("[1] Show car parts");
                                         System.out.println("Select the part to be repaired:    " + "Your money: " + myShop.getCash() + "$");
-                                        System.out.println("[2] Engine --- 50,000$");
-                                        System.out.println("[3] Gearbox --- 25,000$");
-                                        System.out.println("[4] Suspension --- 7,000$");
-                                        System.out.println("[5] Car body --- 25,000$");
-                                        System.out.println("[6] Brakes --- 4,000$");
+                                        System.out.println("[2] Engine --- " + mechanic1.getPriceOfRepair(myShop,carId,"engine")+"$");
+                                        System.out.println("[3] Gearbox --- "+ mechanic1.getPriceOfRepair(myShop,carId,"gearbox")+"$");
+                                        System.out.println("[4] Suspension --- "+ mechanic1.getPriceOfRepair(myShop,carId,"suspension")+"$");
+                                        System.out.println("[5] Car body --- "+ mechanic1.getPriceOfRepair(myShop,carId,"carbody")+"$");
+                                        System.out.println("[6] Brakes --- "+ mechanic1.getPriceOfRepair(myShop,carId,"brakes")+"$");
                                         System.out.println("[7] Back");
                                         part = in.nextInt();
                                         switch (part) {
@@ -228,11 +228,11 @@ public class Game {
                                     do {
                                         System.out.println("[1] Show car parts");
                                         System.out.println("Select the part to be repaired:    " + "Your money: " + myShop.getCash() + "$");
-                                        System.out.println("[2] Engine --- 30,000$");
-                                        System.out.println("[3] Gearbox --- 15,000$");
-                                        System.out.println("[4] Suspension --- 4,000$");
-                                        System.out.println("[5] Car body --- 15,000$");
-                                        System.out.println("[6] Brakes --- 2,000$");
+                                        System.out.println("[2] Engine --- " + mechanic2.getPriceOfRepair(myShop,carId,"engine")+"$");
+                                        System.out.println("[3] Gearbox --- "+ mechanic2.getPriceOfRepair(myShop,carId,"gearbox")+"$");
+                                        System.out.println("[4] Suspension --- "+ mechanic2.getPriceOfRepair(myShop,carId,"suspension")+"$");
+                                        System.out.println("[5] Car body --- "+ mechanic2.getPriceOfRepair(myShop,carId,"carbody")+"$");
+                                        System.out.println("[6] Brakes --- "+ mechanic2.getPriceOfRepair(myShop,carId,"brakes")+"$");
                                         System.out.println("[7] Back");
                                         part = in.nextInt();
                                         switch (part) {
