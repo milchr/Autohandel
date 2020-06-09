@@ -8,7 +8,7 @@ public class Parts {
     private boolean engine;
     private boolean gearbox;
     private boolean suspension;
-    private boolean tires;
+    private boolean carBody;
     private boolean brakes;
 
 
@@ -17,7 +17,7 @@ public class Parts {
         this.engine = isDamaged(new Random().nextBoolean());
         this.gearbox = isDamaged(new Random().nextBoolean());
         this.suspension = isDamaged(new Random().nextBoolean());
-        this.tires = isDamaged(new Random().nextBoolean());
+        this.carBody = isDamaged(new Random().nextBoolean());
         this.brakes = isDamaged(new Random().nextBoolean());
     }
     public void setEngine(){
@@ -29,8 +29,8 @@ public class Parts {
     public void setSuspension(){
         this.suspension = isDamaged(true);
     }
-    public void setTires(){
-        this.tires = isDamaged(true);
+    public void setCarBody(){
+        this.carBody = isDamaged(true);
     }
     public void setBrakes(){
         this.brakes = isDamaged(true);
@@ -62,15 +62,15 @@ public class Parts {
             return "Good";
         }
     }
-    public String getTires(){
-        if(!this.suspension){
+    public String getCarBody(){
+        if(!this.carBody){
             return "Damaged";
         }else{
             return "Good";
         }
     }
     public String getBrakes(){
-        if(!this.suspension){
+        if(!this.brakes){
             return "Damaged";
         }else{
             return "Good";
@@ -78,7 +78,7 @@ public class Parts {
     }
 
     public String getAllParts(){
-        return " Engine: " + getEngine() + " | Gearbox: " + getGearbox()+ " | Suspension: " + getSuspension()+ " | Tires: " + getTires() + " | Brakes: " + getBrakes();
+        return " Engine: " + getEngine() + " | Gearbox: " + getGearbox()+ " | Suspension: " + getSuspension()+ " | Car body: " + getCarBody() + " | Brakes: " + getBrakes();
     }
 
     public String toString() {

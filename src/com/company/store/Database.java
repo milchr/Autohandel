@@ -2,18 +2,16 @@ package com.company.store;
 
 import com.company.humans.Human;
 import com.company.vehicles.Car;
-import com.company.vehicles.Parts;
 
-import java.util.Arrays;
 import java.util.HashSet;
-
+import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 public class Database{
     public Set<Human> clientDB;
     public Set<Car> carsDB;
-    int randomIndex = ThreadLocalRandom.current().nextInt(0, 5 + 1);
+
 
     public Database(){
         this.clientDB=new HashSet<Human>();
@@ -56,11 +54,11 @@ public class Database{
     }
 
     public void waitAWeek(){
-        removeCar(getCar(randomIndex));
-        removeCar(getCar(randomIndex+1));
+        removeCar(getCar(new Random().nextInt(9)));
+        removeCar(getCar(new Random().nextInt(9)));
         this.carsDB.add(new Car());
         this.carsDB.add(new Car());
-        System.out.println("Two new cars have appeared in the database");
+        System.out.println("Two new cars have appeared in the database!\n");
     }
 
     public String toString(){

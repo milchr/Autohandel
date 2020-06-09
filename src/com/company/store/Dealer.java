@@ -4,10 +4,7 @@ import com.company.Buy;
 import com.company.Sell;
 import com.company.humans.Human;
 import com.company.vehicles.Car;
-import com.company.vehicles.Parts;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,6 +33,7 @@ public class Dealer implements Buy, Sell {
         dealerCars.toArray(myArray);
         return myArray[i];
     }
+
     public Double getValue(Integer i){
         Car[] myArray = new Car[dealerCars.size()];
         dealerCars.toArray(myArray);
@@ -50,12 +48,9 @@ public class Dealer implements Buy, Sell {
     public void removeCar(Car car) {
         this.dealerCars.remove(car);
     }
-
     public Double getCash() {
         return cash;
     }
-
-
     public void setCash(Double cash) {
         this.cash = cash;
     }

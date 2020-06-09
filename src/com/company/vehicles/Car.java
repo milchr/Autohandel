@@ -1,12 +1,5 @@
 package com.company.vehicles;
 
-import com.company.Sell;
-import com.company.humans.Human;
-import com.company.store.Database;
-import com.company.store.Dealer;
-import com.company.store.Transaction;
-import org.w3c.dom.ls.LSOutput;
-
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -20,7 +13,6 @@ public class Car {
     private final String producer;
     private final String color;
     private final String segment;
-    private static final Integer DEFAULT_PARTS_SIZE = 5;
 
     private Integer mileage;
     private Double value;
@@ -47,9 +39,13 @@ public class Car {
     public Double getValue(){
         return this.value;
     }
+    public void setValue(Double price)
+    {
+        this.value=price;
+    }
 
     public String toString() {
-        return this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value);
+        return "\n"+this.producer + ", color: " + this.color + ", value: " + decimalFormat(this.value)+"$";
     }
     public Parts getParts(){
         return  this.parts;

@@ -2,7 +2,7 @@ package com.company.mechanics;
 
 public abstract class Mechanic implements Repair {
     public final String name;
-    public final Double guarantee;
+    public Double guarantee;
 
     protected Mechanic(String name, Double guarantee) {
         this.name = name;
