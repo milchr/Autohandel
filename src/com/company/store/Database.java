@@ -32,6 +32,16 @@ public class Database{
         clientDB.toArray(myArray);
         return myArray[i];
     }
+    public String getInterested(Integer i){
+        Human[] myArray = new Human[clientDB.size()];
+        clientDB.toArray(myArray);
+        return myArray[i].getInterestedIn();
+    }
+    public String getInterested2(Integer i){
+        Human[] myArray = new Human[clientDB.size()];
+        clientDB.toArray(myArray);
+        return myArray[i].getInterestedIn2();
+    }
     public Double getCash(Integer i){
         Human[] myArray = new Human[clientDB.size()];
         clientDB.toArray(myArray);

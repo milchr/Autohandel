@@ -66,6 +66,7 @@ public class Car {
     public Double getValue(){
         return this.value;
     }
+    public String getProducer(){return this.producer;}
     public Double getSumOfRepairCosts(){ return this.sumOfRepairCosts;}
     public Double getSumCarWashCosts(){ return this.sumCarWashCosts;}
     public void setValue(Double price)

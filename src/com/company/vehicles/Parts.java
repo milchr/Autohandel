@@ -60,35 +60,51 @@ public class Parts {
         return a;
     }
 
-    public String getEngine(){
+    public boolean getEngine(){
+        return this.engine;
+    }
+    public boolean getGearbox(){
+        return this.gearbox;
+    }
+    public boolean getSuspension(){
+        return this.suspension;
+    }
+    public boolean getCarBody(){
+        return this.carBody;
+    }
+    public boolean getBrakes(){
+        return this.brakes;
+    }
+
+    public String getStatusEngine(){
         if(!this.engine){
             return "Damaged";
         }else{
             return "Good";
         }
     }
-    public String getGearbox(){
+    public String getStatusGearbox(){
         if(!this.gearbox){
             return "Damaged";
         }else{
             return "Good";
         }
     }
-    public String getSuspension(){
+    public String getStatusSuspension(){
         if(!this.suspension){
             return "Damaged";
         }else{
             return "Good";
         }
     }
-    public String getCarBody(){
+    public String getStatusCarBody(){
         if(!this.carBody){
             return "Damaged";
         }else{
             return "Good";
         }
     }
-    public String getBrakes(){
+    public String getStatusBrakes(){
         if(!this.brakes){
             return "Damaged";
         }else{
@@ -97,7 +113,15 @@ public class Parts {
     }
 
     public String getAllParts(){
-        return " Engine: " + getEngine() + " | Gearbox: " + getGearbox()+ " | Suspension: " + getSuspension()+ " | Car body: " + getCarBody() + " | Brakes: " + getBrakes();
+        return " Engine: " + getStatusEngine() + " | Gearbox: " + getStatusGearbox()+ " | Suspension: " + getStatusSuspension()+ " | Car body: " + getStatusCarBody() + " | Brakes: " + getStatusBrakes();
+    }
+    public boolean isInGoodCondition(boolean part){
+        if(part){
+            System.out.println("This is already in good condition!\n");
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public String toString() {

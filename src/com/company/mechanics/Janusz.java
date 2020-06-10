@@ -1,10 +1,7 @@
 package com.company.mechanics;
 
 import com.company.store.Dealer;
-import com.company.store.Transaction;
-import com.company.vehicles.Car;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -94,52 +91,57 @@ public class Janusz extends Mechanic{
             return price;
         }
         return 0.0;
-
     }
+
 
     @Override
     public void repair(Dealer car, int i, String part) {
 
         switch(part){
             case "engine":
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getEngine())){
                 car.getCar(i).getParts().setEngine();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
-                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));}
                 break;
             case "gearbox":
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getGearbox())){
                 car.getCar(i).getParts().setGearbox();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
-                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));}
                 break;
             case "suspension":
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getSuspension())){
                 car.getCar(i).getParts().setSuspension();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
-                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));}
                 break;
             case "carbody":
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getCarBody())){
                 car.getCar(i).getParts().setCarBody();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair car body");
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
-                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));}
                 break;
             case "brakes":
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getBrakes())){
                 car.getCar(i).getParts().setBrakes();
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.1);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
-                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));}
                 break;
             default:
                 System.out.println("Invalid number");

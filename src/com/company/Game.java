@@ -71,7 +71,8 @@ public class Game {
                                     System.out.println("[1] Select car");
                                     System.out.println("[2] Check car costs");
                                     System.out.println("[3] Repair history of all cars");
-                                    System.out.println("[4] Back");
+                                    System.out.println("[4] Car wash");
+                                    System.out.println("[5] Back");
                                     part = in.nextInt();
                                     switch (part) {
                                         case 1:
@@ -105,9 +106,12 @@ public class Game {
                                             }
                                         case 3:
                                             myShop.allRepairs(mechanic1.repairHistory,mechanic2.repairHistory,mechanic3.repairHistory);
-                                            System.out.println(myShop.allrepairHistory);
+                                            System.out.println(myShop.allRepairHistory);
                                             break;
                                         case 4:
+                                            myShop.carWash(carId);
+                                            break;
+                                        case 5:
                                             System.out.println("------------------");
                                             break;
                                         default:
@@ -241,7 +245,7 @@ public class Game {
                                         System.out.println("[4] Suspension --- "+ mechanic1.getPriceOfRepair(myShop,carId,"suspension")+"$");
                                         System.out.println("[5] Car body --- "+ mechanic1.getPriceOfRepair(myShop,carId,"carbody")+"$");
                                         System.out.println("[6] Brakes --- "+ mechanic1.getPriceOfRepair(myShop,carId,"brakes")+"$");
-                                        System.out.println("[7] Repair history");
+                                        System.out.println("[7] Janusz repair history");
                                         System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {
@@ -318,7 +322,7 @@ public class Game {
                                         System.out.println("[4] Suspension --- "+ mechanic2.getPriceOfRepair(myShop,carId,"suspension")+"$");
                                         System.out.println("[5] Car body --- "+ mechanic2.getPriceOfRepair(myShop,carId,"carbody")+"$");
                                         System.out.println("[6] Brakes --- "+ mechanic2.getPriceOfRepair(myShop,carId,"brakes")+"$");
-                                        System.out.println("[7] Repair history");
+                                        System.out.println("[7] Marian repair history");
                                         System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {
@@ -395,7 +399,7 @@ public class Game {
                                         System.out.println("[4] Suspension --- 2,000$");
                                         System.out.println("[5] Car body --- 5,000$");
                                         System.out.println("[6] Brakes --- 1,000$");
-                                        System.out.println("[7] Repair history");
+                                        System.out.println("[7] Adrian repair history");
                                         System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {

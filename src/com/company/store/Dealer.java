@@ -17,7 +17,7 @@ public class Dealer implements Buy, Sell, Ad {
     public ArrayList<Transaction> transactionHistory = new ArrayList<>();
     public Set<Car> dealerCars;
     private static final Double DEFAULT_TAX = 0.02;
-    public ArrayList<RepairHistory> allrepairHistory = new ArrayList<>();
+    public ArrayList<RepairHistory> allRepairHistory = new ArrayList<>();
 
     public Dealer(String name,Double cash){
         this.name=name;
@@ -71,7 +71,7 @@ public class Dealer implements Buy, Sell, Ad {
         return random.nextInt(4)+1;
     }
 
-    public void carWash(int i){
+    public void carWash(Integer i){
         this.setCash(getCash()-30.0);
         getCar(i).addCarWashCosts(30.0);
         System.out.println("You washed the car");
@@ -88,7 +88,6 @@ public class Dealer implements Buy, Sell, Ad {
         this.dealerCars.add(carDb.getCar(i));
         System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
-        this.carWash(i);
         carDb.removeCar(carDb.getCar(i));
         carDb.carsDB.add(new Car());
     }
@@ -96,6 +95,9 @@ public class Dealer implements Buy, Sell, Ad {
     @Override
     public void sell( Database clientDb, int carId, int clientId) throws Exception {
 
+        if(!clientDb.getInterested(clientId).equals(this.getCar(carId).getProducer())||!clientDb.getInterested2(clientId).equals(this.getCar(carId).getProducer())){
+            throw new Exception("Client is not interested in this car");
+        }
         if (clientDb.getCash(clientId) < this.getValue(carId)) {
             throw new Exception("Not enough money");
         }
@@ -130,9 +132,9 @@ public class Dealer implements Buy, Sell, Ad {
         }
     }
     public void allRepairs(ArrayList<RepairHistory> c1, ArrayList<RepairHistory> c2, ArrayList<RepairHistory> c3){
-        allrepairHistory.addAll(c1);
-        allrepairHistory.addAll(c2);
-        allrepairHistory.addAll(c3);
+        allRepairHistory.addAll(c1);
+        allRepairHistory.addAll(c2);
+        allRepairHistory.addAll(c3);
 
     }
 
