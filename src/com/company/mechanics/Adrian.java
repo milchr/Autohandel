@@ -2,6 +2,8 @@ package com.company.mechanics;
 
 import com.company.store.Dealer;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -16,6 +18,7 @@ public class Adrian extends Mechanic {
     private static final Double DEFAULT_REPAIR_PREMIUM_MULTIPLIER= 1.5;
     private static final Double DEFAULT_REPAIR_STANDARD_MULTIPLIER= 1.25;
     private static final Double DEFAULT_REPAIR_BUDGET_MULTIPLIER= 1.0;
+    public ArrayList<RepairHistory> repairHistory = new ArrayList<>();
     int whichPart=-1;
 
     public Adrian(String name, Double guarantee) {
@@ -147,6 +150,8 @@ public class Adrian extends Mechanic {
                     car.getCar(i).getParts().setEngine();
                     System.out.println(part+" has been successfully repaired!");
                     car.getCar(i).setValue(car.getCar(i).getValue()*2);
+                    repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+
                 }else{
                     System.out.println("Adrian failed to repair the "+part);
                 }
@@ -176,6 +181,8 @@ public class Adrian extends Mechanic {
                     car.getCar(i).getParts().setGearbox();
                     System.out.println(part+" has been successfully repaired!");
                     car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
+                    repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+
                 }else{
                     System.out.println("Adrian failed to repair the "+part);
                 }
@@ -205,6 +212,8 @@ public class Adrian extends Mechanic {
                     car.getCar(i).getParts().setSuspension();
                     System.out.println(part+" has been successfully repaired");
                     car.getCar(i).setValue(car.getCar(i).getValue()*1.2);
+                    repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+
                 }else{
                     System.out.println("Adrian failed to repair the "+part);
                 }
@@ -234,6 +243,8 @@ public class Adrian extends Mechanic {
                     car.getCar(i).getParts().setCarBody();
                     System.out.println(part+" has been successfully repaired");
                     car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
+                    repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+
                 }else{
                     System.out.println("Adrian failed to repair the "+part);
                 }
@@ -263,6 +274,8 @@ public class Adrian extends Mechanic {
                     car.getCar(i).getParts().setBrakes();
                     System.out.println(part+" has been successfully repaired");
                     car.getCar(i).setValue(car.getCar(i).getValue()*1.1);
+                    repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
+
                 }else{
                     System.out.println("Adrian failed to repair the "+part);
                 }

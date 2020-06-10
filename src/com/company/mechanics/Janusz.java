@@ -1,6 +1,12 @@
 package com.company.mechanics;
 
 import com.company.store.Dealer;
+import com.company.store.Transaction;
+import com.company.vehicles.Car;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Janusz extends Mechanic{
     private static final Double DEFAULT_ENGINE_PRICE = 50000.0;
@@ -11,6 +17,7 @@ public class Janusz extends Mechanic{
     private static final Double DEFAULT_REPAIR_PREMIUM_MULTIPLIER= 1.5;
     private static final Double DEFAULT_REPAIR_STANDARD_MULTIPLIER= 1.25;
     private static final Double DEFAULT_REPAIR_BUDGET_MULTIPLIER= 1.0;
+    public ArrayList<RepairHistory> repairHistory = new ArrayList<>();
 
     public Janusz(String name, Double guarantee) {
         super(name, guarantee);
@@ -100,6 +107,7 @@ public class Janusz extends Mechanic{
                 car.getCar(i).setValue(car.getCar(i).getValue()*2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
                 break;
             case "gearbox":
                 car.getCar(i).getParts().setGearbox();
@@ -107,6 +115,7 @@ public class Janusz extends Mechanic{
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
                 break;
             case "suspension":
                 car.getCar(i).getParts().setSuspension();
@@ -114,6 +123,7 @@ public class Janusz extends Mechanic{
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.2);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
                 break;
             case "carbody":
                 car.getCar(i).getParts().setCarBody();
@@ -121,6 +131,7 @@ public class Janusz extends Mechanic{
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.5);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair car body");
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
                 break;
             case "brakes":
                 car.getCar(i).getParts().setBrakes();
@@ -128,10 +139,13 @@ public class Janusz extends Mechanic{
                 car.getCar(i).setValue(car.getCar(i).getValue()*1.1);
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
+                repairHistory.add(new RepairHistory(this,car,car.getCar(i),part,priceOfRepair(car,i,part), LocalDateTime.now()));
                 break;
             default:
                 System.out.println("Invalid number");
         }
 
+
     }
+
 }

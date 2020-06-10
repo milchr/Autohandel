@@ -4,13 +4,11 @@ import com.company.Buy;
 import com.company.Sell;
 import com.company.advertisement.Ad;
 import com.company.humans.Human;
+import com.company.mechanics.RepairHistory;
 import com.company.vehicles.Car;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Dealer implements Buy, Sell, Ad {
     private String name;
@@ -19,6 +17,7 @@ public class Dealer implements Buy, Sell, Ad {
     public ArrayList<Transaction> transactionHistory = new ArrayList<>();
     public Set<Car> dealerCars;
     private static final Double DEFAULT_TAX = 0.02;
+    public ArrayList<RepairHistory> allrepairHistory = new ArrayList<>();
 
     public Dealer(String name,Double cash){
         this.name=name;
@@ -130,4 +129,11 @@ public class Dealer implements Buy, Sell, Ad {
             System.out.println("You've gained one new customer");
         }
     }
+    public void allRepairs(ArrayList<RepairHistory> c1, ArrayList<RepairHistory> c2, ArrayList<RepairHistory> c3){
+        allrepairHistory.addAll(c1);
+        allrepairHistory.addAll(c2);
+        allrepairHistory.addAll(c3);
+
+    }
+
 }

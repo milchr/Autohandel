@@ -8,10 +8,10 @@ import com.company.store.Database;
 import com.company.store.Dealer;
 import com.company.vehicles.Car;
 
+
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
 
 public class Game {
 
@@ -70,7 +70,8 @@ public class Game {
                                     System.out.println();
                                     System.out.println("[1] Select car");
                                     System.out.println("[2] Check car costs");
-                                    System.out.println("[3] Back");
+                                    System.out.println("[3] Repair history of all cars");
+                                    System.out.println("[4] Back");
                                     part = in.nextInt();
                                     switch (part) {
                                         case 1:
@@ -103,12 +104,16 @@ public class Game {
                                                 System.out.println("You didn't choose the car!\n");
                                             }
                                         case 3:
+                                            myShop.allRepairs(mechanic1.repairHistory,mechanic2.repairHistory,mechanic3.repairHistory);
+                                            System.out.println(myShop.allrepairHistory);
+                                            break;
+                                        case 4:
                                             System.out.println("------------------");
                                             break;
                                         default:
                                             System.out.println("Invalid number");
                                     }
-                                } while (part != 3);
+                                } while (part != 4);
                                 break;
                             case 2:
                                 System.out.println(decimalFormat(myShop.getCash()));
@@ -236,7 +241,8 @@ public class Game {
                                         System.out.println("[4] Suspension --- "+ mechanic1.getPriceOfRepair(myShop,carId,"suspension")+"$");
                                         System.out.println("[5] Car body --- "+ mechanic1.getPriceOfRepair(myShop,carId,"carbody")+"$");
                                         System.out.println("[6] Brakes --- "+ mechanic1.getPriceOfRepair(myShop,carId,"brakes")+"$");
-                                        System.out.println("[7] Back");
+                                        System.out.println("[7] Repair history");
+                                        System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {
                                             case 1:
@@ -288,13 +294,16 @@ public class Game {
                                                 }
                                                 break;
                                             case 7:
+                                                System.out.println(mechanic1.repairHistory);
+                                                break;
+                                            case 8:
                                                 System.out.println("------------------");
                                                 break;
 
                                             default:
                                                 System.out.println("Invalid number");
                                         }
-                                    } while (part != 7);
+                                    } while (part != 8);
                                 } else {
                                     System.out.println("You didn't choose the car!\n");
                                 }
@@ -309,7 +318,8 @@ public class Game {
                                         System.out.println("[4] Suspension --- "+ mechanic2.getPriceOfRepair(myShop,carId,"suspension")+"$");
                                         System.out.println("[5] Car body --- "+ mechanic2.getPriceOfRepair(myShop,carId,"carbody")+"$");
                                         System.out.println("[6] Brakes --- "+ mechanic2.getPriceOfRepair(myShop,carId,"brakes")+"$");
-                                        System.out.println("[7] Back");
+                                        System.out.println("[7] Repair history");
+                                        System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {
                                             case 1:
@@ -361,6 +371,9 @@ public class Game {
                                                 }
                                                 break;
                                             case 7:
+                                                System.out.println(mechanic2.repairHistory);
+                                                break;
+                                            case 8:
                                                 System.out.println("------------------");
                                                 break;
 
@@ -382,7 +395,8 @@ public class Game {
                                         System.out.println("[4] Suspension --- 2,000$");
                                         System.out.println("[5] Car body --- 5,000$");
                                         System.out.println("[6] Brakes --- 1,000$");
-                                        System.out.println("[7] Back");
+                                        System.out.println("[7] Repair history");
+                                        System.out.println("[8] Back");
                                         part = in.nextInt();
                                         switch (part) {
                                             case 1:
@@ -434,6 +448,9 @@ public class Game {
                                                 }
                                                 break;
                                             case 7:
+                                                System.out.println(mechanic1.repairHistory);
+                                                break;
+                                            case 8:
                                                 System.out.println("------------------");
                                                 break;
 
@@ -478,13 +495,6 @@ public class Game {
 
     }
 
-//    public void goalOfTheGame(){
-//
-//        System.out.println("You won the game!");
-//        System.out.println("Number of turns you have made: "+ numberOfTurns);
-//        break endgame;
-//
-//    }
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
         return decimalFormat.format(value);

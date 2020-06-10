@@ -12,6 +12,6 @@ public abstract class Mechanic implements Repair {
 
 
     public String toString() {
-        return this.name + " repair guarantee:" + this.guarantee;
+        return this.name;
     }
 }
