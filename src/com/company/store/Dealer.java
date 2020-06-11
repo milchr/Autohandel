@@ -7,6 +7,7 @@ import com.company.humans.Human;
 import com.company.mechanics.RepairHistory;
 import com.company.vehicles.Car;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class Dealer implements Buy, Sell, Ad {
     public Set<Car> dealerCars;
     private static final Double DEFAULT_TAX = 0.02;
     private static final Double DEFAULT_NEWSPAPER_PRICE = 30000.0;
-    private static final Double DEFAULT_INTERNET_PRICE = 5000.0;
+    private static final Double DEFAULT_INTERNET_PRICE = 4000.0;
     private static final Double DEFAULT_CAR_WASH_PRICE = 30.0;
     public ArrayList<RepairHistory> allRepairHistory = new ArrayList<>();
 
@@ -99,7 +100,7 @@ public class Dealer implements Buy, Sell, Ad {
         this.setCash(this.getCash() - carDb.getValue(i));
         this.setCash(this.getCash() - carDb.getValue(i)*DEFAULT_TAX);
         this.dealerCars.add(carDb.getCar(i));
-        System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
+        System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ decimalFormat(carDb.getValue(i))+"$" );
         carWashOnBuy(carDb,i);
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
         carDb.removeCar(carDb.getCar(i));
@@ -171,6 +172,10 @@ public class Dealer implements Buy, Sell, Ad {
         allRepairHistory.addAll(c2);
         allRepairHistory.addAll(c3);
 
+    }
+    private String decimalFormat(Double value) {
+        DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
+        return decimalFormat.format(value);
     }
 
 }

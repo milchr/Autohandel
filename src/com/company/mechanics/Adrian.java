@@ -119,7 +119,7 @@ public class Adrian extends Mechanic {
     public void repair(Dealer car, int i, String part) {
         switch(part){
             case "engine":
-                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getBrakes())){
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getEngine())){
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
@@ -151,7 +151,7 @@ public class Adrian extends Mechanic {
                 }}
                 break;
             case "gearbox":
-                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getBrakes())){
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getGearbox())){
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
@@ -183,7 +183,7 @@ public class Adrian extends Mechanic {
                 }}
                 break;
             case "suspension":
-                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getBrakes())){
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getSuspension())){
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));
@@ -215,7 +215,7 @@ public class Adrian extends Mechanic {
                 }}
                 break;
             case "carbody":
-                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getBrakes())){
+                if(car.getCar(i).getParts().isInGoodCondition(car.getCar(i).getParts().getCarBody())){
                 car.setCash(car.getCash() - priceOfRepair(car,i,part));
                 System.out.println("You spent "+priceOfRepair(car,i,part)+" to repair the "+part);
                 addRepairCosts(car,i,priceOfRepair(car,i,part));

@@ -28,7 +28,7 @@ public class Game {
 
 
         Scanner in = new Scanner(System.in);
-        Dealer myShop = new Dealer("Car Shop", 50000.0);
+        Dealer myShop = new Dealer("Car Dealer", 50000.0);
         Database database = new Database();
         Janusz mechanic1 = new Janusz("Janusz");
         Marian mechanic2 = new Marian("Marian");
@@ -120,10 +120,10 @@ public class Game {
                                         default:
                                             System.out.println("Invalid number");
                                     }
-                                } while (part != 4);
+                                } while (part != 5);
                                 break;
                             case 2:
-                                System.out.println(decimalFormat(myShop.getCash()));
+                                System.out.println("You have: "+decimalFormat(myShop.getCash())+"$\n");
                                 break;
                             case 3:
                                 System.out.println(myShop.transactionHistory);
@@ -132,7 +132,7 @@ public class Game {
                                 do{
                                     System.out.println("Select the type of ad:         "+ "Your money: " + decimalFormat(myShop.getCash()) + "$");
                                     System.out.println("[1] Advertisement in a local newspaper ---- 30000.0$");
-                                    System.out.println("[2] Internet advertising ---- 50000.0$");
+                                    System.out.println("[2] Internet advertising ---- 4000.0$");
                                     System.out.println("[3] Back");
                                     part = in.nextInt();
                                     switch (part) {
@@ -391,7 +391,7 @@ public class Game {
                                             default:
                                                 System.out.println("Invalid number");
                                         }
-                                    } while (part != 7);
+                                    } while (part != 8);
                                 } else {
                                     System.out.println("You didn't choose the car!\n");
                                 }
@@ -468,7 +468,7 @@ public class Game {
                                             default:
                                                 System.out.println("Invalid number");
                                         }
-                                    } while (part != 7);
+                                    } while (part != 8);
                                 } else {
                                     System.out.println("You didn't choose the car!\n");
                                 }
