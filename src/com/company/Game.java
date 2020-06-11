@@ -108,6 +108,7 @@ public class Game {
                                                 System.out.println("You didn't choose the car!\n");
                                             }
                                         case 3:
+                                            System.out.println("Repair history of your cars:");
                                             myShop.allRepairs(mechanic1.repairHistory,mechanic2.repairHistory,mechanic3.repairHistory);
                                             System.out.println(myShop.allRepairHistory);
                                             break;
@@ -126,6 +127,7 @@ public class Game {
                                 System.out.println("You have: "+decimalFormat(myShop.getCash())+"$\n");
                                 break;
                             case 3:
+                                System.out.println("Your transaction history: ");
                                 System.out.println(myShop.transactionHistory);
                                 break;
                             case 4:
@@ -198,6 +200,7 @@ public class Game {
                         key = in.nextInt();
                         switch (key) {
                             case 1:
+                                System.out.println("Your potential customers: ");
                                 System.out.println(database.clientDB);
                                 break;
                             case 2:

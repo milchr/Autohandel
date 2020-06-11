@@ -44,7 +44,6 @@ public class Dealer implements Buy, Sell, Ad {
         return myArray[i];
     }
 
-
     public Double getValue(Integer i){
         Car[] myArray = new Car[dealerCars.size()];
         dealerCars.toArray(myArray);
