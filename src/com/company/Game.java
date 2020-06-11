@@ -75,9 +75,13 @@ public class Game {
                                     part = in.nextInt();
                                     switch (part) {
                                         case 1:
-                                            System.out.println(myShop.dealerCars);
-                                            System.out.println("Select a car index :");
-                                            carId = in.nextInt();
+                                            if(!myShop.dealerCars.isEmpty()) {
+                                                System.out.println(myShop.dealerCars);
+                                                System.out.println("Select a car index :");
+                                                carId = in.nextInt();
+                                            }else{
+                                                System.out.println("You don't have a car!\n");
+                                            }
                                             break;
                                         case 2:
                                             if (carId!=-1) {
@@ -231,8 +235,12 @@ public class Game {
                         switch (key) {
                             case 1:
                                 System.out.println(myShop.dealerCars);
-                                System.out.println("Select a car index :");
-                                carId = in.nextInt();
+                                if(!myShop.dealerCars.isEmpty()) {
+                                    System.out.println("Select a car index :");
+                                    carId = in.nextInt();
+                                }else{
+                                    System.out.println("You don't have a car!\n");
+                                }
                                 break;
                             case 2:
                                 if (carId!=-1) {
@@ -488,7 +496,7 @@ public class Game {
             }
             if(myShop.getCash()>=startCash*2)
             {
-                System.out.println("You won the game!");
+                System.out.println("~~~~ You won the game! ~~~~");
                 System.out.println("Number of turns you have made: "+ numberOfTurns);
                 break;
 

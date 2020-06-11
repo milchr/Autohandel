@@ -47,7 +47,13 @@ public class Human {
         this.cash=cash;
     }
     public String toString() {
-        return "Client: " + this.firstName + ", cash: " + decimalFormat(this.cash) +" Interested in: "+ this.interestedIn+" or "+this.interestedIn2+". Client wants "+getStatusWantsFullyFunctionalCar();
+        if(this.getWantsFullyFunctionalCar()){
+            return "\n"+"Client: " + this.firstName + ", cash: " + decimalFormat(this.cash) +" Interested in: "+ this.interestedIn+" or "+this.interestedIn2+".   Client wants "+getStatusWantsFullyFunctionalCar();
+
+        }else{
+            return "\n"+"Client: " + this.firstName + ", cash: " + decimalFormat(this.cash) +" Interested in: "+ this.interestedIn+" or "+this.interestedIn2;
+
+        }
     }
 
     private String decimalFormat(Double value) {

@@ -37,10 +37,12 @@ public class Dealer implements Buy, Sell, Ad {
     }
 
     public Car getCar(Integer i) {
+
         Car[] myArray = new Car[dealerCars.size()];
         dealerCars.toArray(myArray);
         return myArray[i];
     }
+
 
     public Double getValue(Integer i){
         Car[] myArray = new Car[dealerCars.size()];
@@ -106,46 +108,62 @@ public class Dealer implements Buy, Sell, Ad {
 
     @Override
     public void sell( Database clientDb, int carId, int clientId) throws Exception {
-
-        if(!clientDb.getInterested(clientId).equals(this.getCar(carId).getProducer())&&!clientDb.getInterested2(clientId).equals(this.getCar(carId).getProducer())){
-            throw new Exception("Client is not interested in this car\n");
-        }
-        if(clientDb.getWants(clientId)){
-            if(!this.getCar(carId).getParts().fullyFunctionalCar()){
-                throw new Exception("Client is not interested in damaged car!\n");
+        if(!this.dealerCars.isEmpty()) {
+            if (!clientDb.getInterested(clientId).equals(this.getCar(carId).getProducer()) && !clientDb.getInterested2(clientId).equals(this.getCar(carId).getProducer())) {
+                throw new Exception("Client is not interested in this car\n");
             }
-        }
-        if (clientDb.getCash(clientId) < this.getValue(carId)) {
-            throw new Exception("Client doesn't have that much money!\n");
+            if (clientDb.getWants(clientId)) {
+                if (!this.getCar(carId).getParts().fullyFunctionalCar()) {
+                    throw new Exception("Client is not interested in damaged car!\n");
+                }
+            }
+            if (clientDb.getCash(clientId) < this.getValue(carId)) {
+                throw new Exception("Client doesn't have that much money!\n");
+            }
+
+            this.setCash(this.getCash() + this.getValue(carId));
+            clientDb.setCash(clientDb.getCash(clientId) - this.getValue(carId), clientId);
+            System.out.println("You sold the " + this.getCar(carId) + " to " + clientDb.getClient(clientId));
+            transactionHistory.add(new Transaction(this, clientDb.getClient(clientId), this.getCar(carId), this.getValue(carId), LocalDateTime.now()));
+            this.removeCar(this.getCar(carId));
+            clientDb.clientDB.add(new Human());
+            clientDb.clientDB.add(new Human());
+            System.out.println("You've gained two new potential customers");
+        }else{
+            System.out.println("You don't have a car!\n");
         }
 
-        this.setCash(this.getCash() + this.getValue(carId));
-        clientDb.setCash(clientDb.getCash(clientId)-this.getValue(carId),clientId);
-        System.out.println("You sold the "+this.getCar(carId)+" to "+clientDb.getClient(clientId));
-        transactionHistory.add(new Transaction(this,clientDb.getClient(clientId),this.getCar(carId),this.getValue(carId),LocalDateTime.now()));
-        this.removeCar(this.getCar(carId));
-        clientDb.clientDB.add(new Human());
-        clientDb.clientDB.add(new Human());
-        System.out.println("You've gained two new potential customers");
     }
 
     @Override
     public void ad(String type, Database clientDB) {
+
         if(type.equals("Newspaper"))
         {
-            System.out.println("You bought an advertisement in a local newspaper!");
-            this.setCash(this.getCash() - DEFAULT_NEWSPAPER_PRICE);
-            for(int i=0;i<randomNumberOfClients();i++){
-                clientDB.clientDB.add(new Human());
+            if (this.getCash() >=DEFAULT_NEWSPAPER_PRICE) {
+                System.out.println("You bought an advertisement in a local newspaper!");
+                this.setCash(this.getCash() - DEFAULT_NEWSPAPER_PRICE);
+                for(int i=0;i<randomNumberOfClients();i++){
+                    clientDB.clientDB.add(new Human());
+                }
+                System.out.println("You've gained "+randomNumberOfClients()+" new customers!");
+            }else{
+                System.out.println("You don't have enough money!\n");
             }
-            System.out.println("You've gained "+randomNumberOfClients()+" new customers!");
+
         }
         if(type.equals("Internet"))
         {
-            System.out.println("You bought online advertising!");
-            this.setCash(this.getCash() - DEFAULT_INTERNET_PRICE);
-            clientDB.clientDB.add(new Human());
-            System.out.println("You've gained one new customer");
+            if (this.getCash() >= DEFAULT_INTERNET_PRICE) {
+                System.out.println("You bought online advertising!");
+                this.setCash(this.getCash() - DEFAULT_INTERNET_PRICE);
+                clientDB.clientDB.add(new Human());
+                System.out.println("You've gained one new customer");
+
+            }else{
+                System.out.println("You don't have enough money!\n");
+            }
+
         }
     }
     public void allRepairs(ArrayList<RepairHistory> c1, ArrayList<RepairHistory> c2, ArrayList<RepairHistory> c3){
