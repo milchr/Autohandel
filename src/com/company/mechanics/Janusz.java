@@ -16,8 +16,8 @@ public class Janusz extends Mechanic{
     private static final Double DEFAULT_REPAIR_BUDGET_MULTIPLIER= 1.0;
     public ArrayList<RepairHistory> repairHistory = new ArrayList<>();
 
-    public Janusz(String name, Double guarantee) {
-        super(name, guarantee);
+    public Janusz(String name) {
+        super(name);
     }
 
     public Double getPriceOfRepair(Dealer car, int i, String part){

@@ -8,7 +8,10 @@ import com.company.mechanics.RepairHistory;
 import com.company.vehicles.Car;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class Dealer implements Buy, Sell, Ad {
     private String name;
@@ -17,6 +20,9 @@ public class Dealer implements Buy, Sell, Ad {
     public ArrayList<Transaction> transactionHistory = new ArrayList<>();
     public Set<Car> dealerCars;
     private static final Double DEFAULT_TAX = 0.02;
+    private static final Double DEFAULT_NEWSPAPER_PRICE = 30000.0;
+    private static final Double DEFAULT_INTERNET_PRICE = 5000.0;
+    private static final Double DEFAULT_CAR_WASH_PRICE = 30.0;
     public ArrayList<RepairHistory> allRepairHistory = new ArrayList<>();
 
     public Dealer(String name,Double cash){
@@ -72,8 +78,13 @@ public class Dealer implements Buy, Sell, Ad {
     }
 
     public void carWash(Integer i){
-        this.setCash(getCash()-30.0);
-        getCar(i).addCarWashCosts(30.0);
+        this.setCash(getCash()-DEFAULT_CAR_WASH_PRICE);
+        getCar(i).addCarWashCosts(DEFAULT_CAR_WASH_PRICE);
+        System.out.println("You washed the car");
+    }
+    public void carWashOnBuy(Database carDb,Integer i){
+        this.setCash(getCash()-DEFAULT_CAR_WASH_PRICE);
+        carDb.getCar(i).addCarWashCosts(DEFAULT_CAR_WASH_PRICE);
         System.out.println("You washed the car");
     }
 
@@ -87,6 +98,7 @@ public class Dealer implements Buy, Sell, Ad {
         this.setCash(this.getCash() - carDb.getValue(i)*DEFAULT_TAX);
         this.dealerCars.add(carDb.getCar(i));
         System.out.println("You bought a "+carDb.getCar(i)+" to your store for "+ carDb.getValue(i) );
+        carWashOnBuy(carDb,i);
         transactionHistory.add(new Transaction(this, carDb,carDb.getCar(i),carDb.getValue(i),LocalDateTime.now()));
         carDb.removeCar(carDb.getCar(i));
         carDb.carsDB.add(new Car());
@@ -95,11 +107,16 @@ public class Dealer implements Buy, Sell, Ad {
     @Override
     public void sell( Database clientDb, int carId, int clientId) throws Exception {
 
-        if(!clientDb.getInterested(clientId).equals(this.getCar(carId).getProducer())||!clientDb.getInterested2(clientId).equals(this.getCar(carId).getProducer())){
-            throw new Exception("Client is not interested in this car");
+        if(!clientDb.getInterested(clientId).equals(this.getCar(carId).getProducer())&&!clientDb.getInterested2(clientId).equals(this.getCar(carId).getProducer())){
+            throw new Exception("Client is not interested in this car\n");
+        }
+        if(clientDb.getWants(clientId)){
+            if(!this.getCar(carId).getParts().fullyFunctionalCar()){
+                throw new Exception("Client is not interested in damaged car!\n");
+            }
         }
         if (clientDb.getCash(clientId) < this.getValue(carId)) {
-            throw new Exception("Not enough money");
+            throw new Exception("Client doesn't have that much money!\n");
         }
 
         this.setCash(this.getCash() + this.getValue(carId));
@@ -117,7 +134,7 @@ public class Dealer implements Buy, Sell, Ad {
         if(type.equals("Newspaper"))
         {
             System.out.println("You bought an advertisement in a local newspaper!");
-            this.setCash(this.getCash() - 30000.0);
+            this.setCash(this.getCash() - DEFAULT_NEWSPAPER_PRICE);
             for(int i=0;i<randomNumberOfClients();i++){
                 clientDB.clientDB.add(new Human());
             }
@@ -126,7 +143,7 @@ public class Dealer implements Buy, Sell, Ad {
         if(type.equals("Internet"))
         {
             System.out.println("You bought online advertising!");
-            this.setCash(this.getCash() - 5000.0);
+            this.setCash(this.getCash() - DEFAULT_INTERNET_PRICE);
             clientDB.clientDB.add(new Human());
             System.out.println("You've gained one new customer");
         }

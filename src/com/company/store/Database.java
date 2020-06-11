@@ -42,6 +42,11 @@ public class Database{
         clientDB.toArray(myArray);
         return myArray[i].getInterestedIn2();
     }
+    public boolean getWants(Integer i){
+        Human[] myArray = new Human[clientDB.size()];
+        clientDB.toArray(myArray);
+        return myArray[i].getWantsFullyFunctionalCar();
+    }
     public Double getCash(Integer i){
         Human[] myArray = new Human[clientDB.size()];
         clientDB.toArray(myArray);

@@ -9,6 +9,7 @@ public class Parts {
     private boolean suspension;
     private boolean carBody;
     private boolean brakes;
+    private boolean part;
 
 
 
@@ -122,6 +123,18 @@ public class Parts {
         }else{
             return true;
         }
+    }
+    public boolean fullyFunctionalCar(){
+        if(getEngine()) {
+            if (getGearbox()) {
+                if (getSuspension()) {
+                    if (getCarBody()) {
+                        return getBrakes();
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public String toString() {

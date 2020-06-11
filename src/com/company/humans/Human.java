@@ -1,11 +1,8 @@
 package com.company.humans;
 
-import com.company.store.Database;
-import com.company.store.Dealer;
 import com.company.vehicles.Car;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -17,9 +14,10 @@ public class Human {
     private Double cash;
     private String interestedIn;
     private String interestedIn2;
+    private boolean wantsFullyFunctionalCar;
     private Car car;
     public String[] producers ={"Fiat", "Audi", "Opel","BMW","Mercedes","Honda","Toyota","Skoda","Ferrari","Porsche","Ford","Lexus","Maserati","McLaren"};
-    double randomCash = ThreadLocalRandom.current().nextDouble(10000.0, 300000.0 + 1);
+    double randomCash = ThreadLocalRandom.current().nextDouble(10000.0, 400000.0 + 1);
     public Set<Car> myCars;
 
     public Human() {
@@ -29,6 +27,7 @@ public class Human {
         this.interestedIn = producers[new Random().nextInt(producers.length)];
         this.interestedIn2 = producers[new Random().nextInt(producers.length)];
         if(this.interestedIn.equals(getInterestedIn2())){this.interestedIn2 = producers[new Random().nextInt(producers.length)];}
+        this.wantsFullyFunctionalCar=new Random().nextBoolean();
     }
     public void addCar(Car car) {
         this.car = car;
@@ -40,6 +39,7 @@ public class Human {
     public String getInterestedIn2(){
         return this.interestedIn2;
     }
+    public boolean getWantsFullyFunctionalCar(){return  this.wantsFullyFunctionalCar;}
     public Double getCash(){
         return this.cash;
     }
@@ -47,12 +47,19 @@ public class Human {
         this.cash=cash;
     }
     public String toString() {
-        return "Client: " + this.firstName + ", cash: " + decimalFormat(this.cash) +" Interested in: "+ this.interestedIn+" or "+this.interestedIn2;
+        return "Client: " + this.firstName + ", cash: " + decimalFormat(this.cash) +" Interested in: "+ this.interestedIn+" or "+this.interestedIn2+". Client wants "+getStatusWantsFullyFunctionalCar();
     }
 
     private String decimalFormat(Double value) {
         DecimalFormat decimalFormat =  new DecimalFormat("#0.00");
         return decimalFormat.format(value);
+    }
+    public String getStatusWantsFullyFunctionalCar(){
+        if(this.wantsFullyFunctionalCar){
+            return "to buy fully functional car";
+        }else{
+            return "to buy a damaged car";
+        }
     }
 
 

@@ -2,14 +2,12 @@ package com.company.mechanics;
 
 import com.company.store.Dealer;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class Marian extends Mechanic {
-    private static final Double DEFAULT_GUARANTEE = 0.9;
     private static final Double DEFAULT_ENGINE_PRICE = 30000.0;
     private static final Double DEFAULT_GEARBOX_PRICE = 15000.0;
     private static final Double DEFAULT_CARBODY_PRICE = 15000.0;
@@ -20,9 +18,9 @@ public class Marian extends Mechanic {
     private static final Double DEFAULT_REPAIR_BUDGET_MULTIPLIER= 1.0;
     public ArrayList<RepairHistory> repairHistory = new ArrayList<>();
 
-    public Marian(String name, Double guarantee) {
-        super(name, guarantee);
-        this.guarantee=DEFAULT_GUARANTEE;
+    public Marian(String name) {
+        super(name);
+
     }
     public Double getPriceOfRepair(Dealer car, int i, String part){
         return priceOfRepair(car, i, part);
@@ -101,10 +99,7 @@ public class Marian extends Mechanic {
     public boolean chanceToRepair(){
         Random random = new Random();
         int rnd =  random.nextInt(100);
-        if(rnd>=0 && rnd<=90){
-            return true;
-        }else
-            return false;
+        return rnd >= 0 && rnd <= 90;
     }
 
     @Override

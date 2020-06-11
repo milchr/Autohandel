@@ -8,7 +8,6 @@ import com.company.store.Database;
 import com.company.store.Dealer;
 import com.company.vehicles.Car;
 
-
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -29,11 +28,11 @@ public class Game {
 
 
         Scanner in = new Scanner(System.in);
-        Dealer myShop = new Dealer("Car Shop", 450000.0);
+        Dealer myShop = new Dealer("Car Shop", 50000.0);
         Database database = new Database();
-        Janusz mechanic1 = new Janusz("Janusz", 1.0);
-        Marian mechanic2 = new Marian("Marian", 0.9);
-        Adrian mechanic3 = new Adrian("Adrian", 0.8);
+        Janusz mechanic1 = new Janusz("Janusz");
+        Marian mechanic2 = new Marian("Marian");
+        Adrian mechanic3 = new Adrian("Adrian");
         double startCash=myShop.getCash();
         for (int i = 0; i < 10; i++) {
             database.carsDB.add(new Car());

@@ -9,7 +9,6 @@ import java.util.Random;
 
 
 public class Adrian extends Mechanic {
-    private static final Double DEFAULT_GUARANTEE = 0.8;
     private static final Double DEFAULT_ENGINE_PRICE = 10000.0;
     private static final Double DEFAULT_GEARBOX_PRICE = 5000.0;
     private static final Double DEFAULT_CARBODY_PRICE = 5000.0;
@@ -21,9 +20,9 @@ public class Adrian extends Mechanic {
     public ArrayList<RepairHistory> repairHistory = new ArrayList<>();
     int whichPart=-1;
 
-    public Adrian(String name, Double guarantee) {
-        super(name, guarantee);
-        this.guarantee=DEFAULT_GUARANTEE;
+    public Adrian(String name) {
+        super(name);
+
     }
     public Double getPriceOfRepair(Dealer car, int i, String part){
         return priceOfRepair(car, i, part);
@@ -102,18 +101,12 @@ public class Adrian extends Mechanic {
         Random random = new Random();
         int rnd =  random.nextInt(100);
 
-        if(rnd>=0 && rnd<=80){
-            return true;
-        }else
-            return false;
+        return rnd >= 0 && rnd <= 80;
     }
     public boolean chanceToDamage(){
         Random random = new Random();
         int rnd =  random.nextInt(100);
-        if(rnd>=0 && rnd<=98){
-            return false;
-        }else
-            return true;
+        return rnd < 0 || rnd > 98;
     }
     public int randomNumber(){
         Random random = new Random();
@@ -288,6 +281,5 @@ public class Adrian extends Mechanic {
             default:
                 System.out.println("Invalid number");
         }
-
     }
 }

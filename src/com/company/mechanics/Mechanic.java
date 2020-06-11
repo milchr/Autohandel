@@ -2,11 +2,11 @@ package com.company.mechanics;
 
 public abstract class Mechanic implements Repair {
     public final String name;
-    public Double guarantee;
 
-    protected Mechanic(String name, Double guarantee) {
+
+    protected Mechanic(String name) {
         this.name = name;
-        this.guarantee = guarantee;
+
     }
 
 
