@@ -78,7 +78,7 @@ public class Game {
                                             if(!myShop.dealerCars.isEmpty()) {
                                                 System.out.println(myShop.dealerCars);
                                                 System.out.println("Select a car index :");
-                                                carId = in.nextInt();
+                                                carId = in.nextInt()-1;
                                             }else{
                                                 System.out.println("You don't have a car!\n");
                                             }
@@ -175,8 +175,8 @@ public class Game {
                                 System.out.println(database.carsDB);
                                 break;
                             case 2:
-                                System.out.println("Select a car index :");
-                                index = in.nextInt();
+                                System.out.println("Select a car index:             Your money: "+decimalFormat(myShop.getCash())+"$");
+                                index = in.nextInt()-1;
                                 try {
                                     myShop.buy(database, index);
                                     numberOfTurns++;
@@ -206,9 +206,9 @@ public class Game {
                             case 2:
                                 System.out.println(myShop.dealerCars);
                                 System.out.println("Select a car index :");
-                                carId = in.nextInt();
+                                carId = in.nextInt()-1;
                                 System.out.println("Select customer index :");
-                                clientId = in.nextInt();
+                                clientId = in.nextInt()-1;
                                 try {
                                     myShop.sell(database, carId, clientId);
                                     numberOfTurns++;
@@ -240,7 +240,7 @@ public class Game {
                                 System.out.println(myShop.dealerCars);
                                 if(!myShop.dealerCars.isEmpty()) {
                                     System.out.println("Select a car index :");
-                                    carId = in.nextInt();
+                                    carId = in.nextInt()-1;
                                 }else{
                                     System.out.println("You don't have a car!\n");
                                 }

@@ -87,7 +87,7 @@ public class Dealer implements Buy, Sell, Ad {
     public void carWashOnBuy(Database carDb,Integer i){
         this.setCash(getCash()-DEFAULT_CAR_WASH_PRICE);
         carDb.getCar(i).addCarWashCosts(DEFAULT_CAR_WASH_PRICE);
-        System.out.println("You washed the car");
+        System.out.println("You washed the car for "+DEFAULT_CAR_WASH_PRICE+"$");
     }
 
 
