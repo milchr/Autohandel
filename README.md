@@ -1,2 +1,2 @@
 # Autohandel
-Project - Console application game
+University project - Java Console application game
